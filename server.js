@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware for parsing data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/notes', api);
+app.use('/api', api);
 app.use(express.static('public'));
 
 // GET route for returning notes.html
