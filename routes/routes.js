@@ -5,7 +5,7 @@ const uuid = require('../helpers/uuid');
 // Router
 const router = require('express').Router();
 
-// GET route for for retrieving notes
+// GET route for for reading db.json file and returning saved notes as JSON
 router.get('/notes', (req, res) => {
     console.log('Retrieving notes!');
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -17,7 +17,7 @@ router.get('/notes', (req, res) => {
     })
 });
 
-// POST route for adding new note
+// POST route for adding new note, saving it to request body, and returning note to user
 router.post('/notes', (req, res) => {
     console.log('Updating notes!');
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
