@@ -19,11 +19,11 @@ app.get('/notes', (req, res) =>
 );
 
 // GET route for returning index.html
-app.get('*', (req, res) => 
+app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, './public/index.html'))
 );
 
 // Initiates server listening
 app.listen(PORT, () =>
-  console.log(`App listening on PORT: ${PORT}`)
+    console.log(`App listening on PORT: ${PORT}`)
 );
