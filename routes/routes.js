@@ -1,8 +1,9 @@
+// Require dependencies
 const fs = require('fs');
-const path = require('path');
 const router = require('express').Router();
 const uuid = require('../helpers/uuid');
 
+// GET route for for retrieving notes
 router.get('/notes', (req, res) => {
     console.log('Retrieving notes!');
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -14,7 +15,9 @@ router.get('/notes', (req, res) => {
     })
 });
 
+// POST route for adding new note
 router.post('/notes', (req, res) => {
+    console.log('Updating notes!');
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         let notes = JSON.parse(data);
 
@@ -38,7 +41,25 @@ router.post('/notes', (req, res) => {
     });
 });
 
+// DELETE route for deleting a note
+router.delete('/notes/:id', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        let notes = JSON.parse(data);
 
+        // Filter out all notes that DON'T have the id to be deleted
+        notes = notes.filter(note => (note.id !== req.params.id));
+
+        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Note deleted!');
+                res.json(notes);
+            }
+        });
+
+    });
+})
 
 module.exports = router;
 
