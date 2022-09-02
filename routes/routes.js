@@ -1,7 +1,9 @@
 // Require dependencies
 const fs = require('fs');
-const router = require('express').Router();
 const uuid = require('../helpers/uuid');
+
+// Router
+const router = require('express').Router();
 
 // GET route for for retrieving notes
 router.get('/notes', (req, res) => {
